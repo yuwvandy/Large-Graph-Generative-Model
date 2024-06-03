@@ -1,0 +1,52 @@
+hydra:
+  job:
+    chdir: True
+  run:
+    dir: ../outputs/${general.name}
+general:
+    name: 'bio'
+    wandb: 'disabled'                # online | offline | disabled
+    gpus: 1
+    setting: 'train_scratch'
+    resume: null
+    ckpt_path: null
+    sample_every_val: 4
+    check_val_every_n_epochs: 10
+    samples_to_generate: 100      
+    samples_to_save: 3
+    chains_to_save: 1
+    log_every_steps: 50
+    number_chain_steps: 8
+    final_model_samples_to_generate: 100
+    final_model_samples_to_save: 30
+    final_model_chains_to_save: 20
+    num_train: -1
+model:
+    type: 'discrete'
+    transition: 'marginal'                  
+    model: 'graph_tf'
+    diffusion_steps: 500
+    diffusion_noise_schedule: 'cosine'
+    n_layers: 5
+    extra_features: 'all'
+    hidden_mlp_dims: {'X': 256, 'E': 128, 'y': 128}
+    hidden_dims: {'dx': 256, 'de': 64, 'dy': 64, 'n_head': 8, 'dim_ffX': 256, 'dim_ffE': 128, 'dim_ffy': 128}
+    lambda_train: [5, 0]
+train:
+    n_epochs: 300
+    batch_size: 8
+    accumulate_grad_batches: 1
+    lr: 0.0002
+    clip_grad: null
+    save_model: True
+    num_workers: 0
+    ema_decay: 0
+    weight_decay: 1e-12
+    seed: 0
+    progress_bar: false
+    optimizer: adamw
+dataset:
+    datadir: 'graph/'
+    name: bio
+    remove_h: null
+    sample: 'ego'

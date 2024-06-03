@@ -1,0 +1,1 @@
+python3 main.py dataset.name="all" dataset.sample="seed" general.name="all seed marginal" model.transition="marginal" general.gpus=[0] train.batch_size=12 train.accumulate_grad_batches=4 general.setting='train_scratch'
