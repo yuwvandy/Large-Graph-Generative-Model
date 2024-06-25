@@ -1,0 +1,1 @@
+python3 main.py dataset.name="all" general.name="all uniform" model.transition="uniform" general.condition="Animal Social Networks" general.gpus=[0] train.batch_size=12 train.accumulate_grad_batches=4 general.wandb='disabled'
